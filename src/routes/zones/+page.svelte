@@ -18,7 +18,7 @@
 		Zones
 	</h1>
     <li>
-        <h2>Request Zones (Layout) + Link to form to edit zone + delete</h2>
+        <h2>Request Zones (Cache, Layout) + Link to form to edit zone + delete</h2>
     </li>
 </div>
 

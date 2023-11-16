@@ -20,8 +20,12 @@
 	</h1>
 	<ul class="list-disc">
 		<li>
-			<h2>Request Reports 7D (Layout+invalidate)</h2>
+			<h2>Request Reports 7D (Cache, Page)</h2>
+			<p>highlight if unseen</p>
 			<ol class="list-decimal">
+				<li>
+					GeoPoint in the url query
+				</li>
 				<li>
 					Ask GPS 
 				</li>
@@ -33,15 +37,12 @@
 				</li>
 			</ol>
 		</li>
-
 		<li>
-			<h2>Request Zones (Layout)</h2>
+			<h2>Request Zones (Cache, Layout)</h2>
 		</li>
-
 		<li>
-			<h2>Request Reports from url query (Page) + move to</h2>
+			<h2>Request Reports from url query (Cache, Page) + move to</h2>
 		</li>
-
 	</ul>
 </div>
 
