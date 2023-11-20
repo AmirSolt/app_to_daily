@@ -1,12 +1,28 @@
 <script lang="ts">
 
-</script>
+	export let data;
+	const {
+		userData,
+		ads,
+	} = data;
 
+</script>
 <div>
 	<h1>
-		Reports
+		Notifications
 	</h1>
-	<h2>Should be stored locally + Link to report in map + highlight if unseen</h2>
+	<p>
+		Number of notifications in past week: {userData.zoneReports.length}
+	</p>
 </div>
 
 
+<br>
+<hr>
+<br>
+
+<div>
+	<p>
+		for zone reports + dropdown + map
+	</p>
+</div>

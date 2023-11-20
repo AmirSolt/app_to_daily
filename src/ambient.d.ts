@@ -1,6 +1,18 @@
+interface UserData{
+    zones:Zone[]
+    zoneReports:Report[]
+    reportFilters:ReportFilter[]
+}
+
+
+// =======================================
 
 interface Report{
     point:GeoPoint
+    crimeType:"break and enter"|"robbery"
+}
+
+interface ReportFilter{
     crimeType:"break and enter"|"robbery"
 }
 
@@ -27,5 +39,6 @@ interface Advert{
 // =======================================
 
 interface GeoPoint{
-
+    x:number
+    y:number
 }

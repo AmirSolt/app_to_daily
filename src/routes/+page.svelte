@@ -1,60 +1,52 @@
 <script lang="ts">
 
+	export let data;
+	const {
+		userData,
+		ads,
+	} = data;
+
 </script>
 
 <div>
 	<h1>
-		Advert
+		Ads recieved {ads.length}
 	</h1>
-	<h2>
-		Request Advert (Layout)
-	</h2>
 </div>
 
+<br>
 <hr>
-
+<br>
 
 <div>
 	<h1>
 		Map
 	</h1>
-	<ul class="list-disc">
-		<li>
-			<h2>Request Reports 7D (Cache, Page)</h2>
-			<p>highlight if unseen</p>
-			<ol class="list-decimal">
-				<li>
-					GeoPoint in the url query
-				</li>
-				<li>
-					Ask GPS 
-				</li>
-				<li>
-					First Zone
-				</li>
-				<li>
-					Default Some Point
-				</li>
-			</ol>
-		</li>
-		<li>
-			<h2>Request Zones (Cache, Layout)</h2>
-		</li>
-		<li>
-			<h2>Request Reports from url query (Cache, Page) + move to</h2>
-		</li>
-	</ul>
+
+	<p>
+		Zone Reports {userData.zoneReports.length}
+	</p>
+
+	<p>
+		Scanned Reports {0}, No scans done: 1.Ask GPS 2.First Zone 3.Default Some Point (No Scan)
+	</p>
+
+	<p>
+		Total Reports {userData.zoneReports.length + 0}
+	</p>
 </div>
 
+<br>
 <hr>
+<br>
 
 <div>
 	<h1>
-		Add Zone
+		Add Zone Link
 	</h1>
-	<h2>
-		Link to zones/form/[new]
-	</h2>
+	<p>
+		Number of zones {userData.zones.length}
+	</p>
 </div>
 
 

@@ -3,7 +3,10 @@
 // and what to do when importing types
 declare namespace App {
 	// interface Locals {}
-	// interface PageData {}
+	interface PageData {
+		userData:UserData
+		ads:Advert[]
+	}
 	// interface Error {}
 	// interface Platform {}
 }
