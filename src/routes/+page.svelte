@@ -1,6 +1,7 @@
 <script lang="ts">
 	import AdvertBanner from '$lib/comp/ui/AdvertBanner.svelte';
 	import CreateZoneLink from '$lib/comp/ui/CreateZoneLink.svelte';
+	import ReportFilter from '$lib/comp/ui/ReportFilter.svelte';
 
 	export let data;
 	const {
@@ -23,11 +24,16 @@
 <hr>
 <br>
 
+
+<ReportFilter filters={userData.reportFilters} />
+
+
+<br>
+<hr>
+<br>
+
 <div>
 
-	<p>
-		Filters {userData.reportFilters.length}
-	</p>
 
 	<h1>
 		Map

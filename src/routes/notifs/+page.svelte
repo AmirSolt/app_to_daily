@@ -2,6 +2,7 @@
 
 	import { Accordion } from '@skeletonlabs/skeleton';
 	import NotifItem from '$lib/comp/ui/NotifItem.svelte';
+	import ReportFilter from '$lib/comp/ui/ReportFilter.svelte';
 
 	export let data;
 	const {
@@ -28,6 +29,11 @@
 <hr>
 <br>
 
+<ReportFilter filters={userData.reportFilters} />
+
+<br>
+<hr>
+<br>
 
 <Accordion class="flex flex-col gap-2">
 	{#each userData.zoneReports as report}

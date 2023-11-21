@@ -1,3 +1,5 @@
+import { CrimeTypes } from "$lib/utils/globals";
+
 
 export const load = async () => {
     
@@ -36,18 +38,20 @@ async function getUserData():Promise<UserData>{
         zoneReports:[
             { 
                 point:{x:1,y:1},
-                crimeType:"break and enter"
+                crimeType:CrimeTypes.breakAndEnter
             } as Report,
             { 
                 point:{x:1,y:1},
-                crimeType:"robbery"
+                crimeType:CrimeTypes.robbery
             } as Report,
             { 
                 point:{x:1,y:1},
-                crimeType:"break and enter"
+                crimeType:CrimeTypes.breakAndEnter
             } as Report
         ],
-        reportFilters:[],
+        reportFilters:[
+            CrimeTypes.breakAndEnter,
+        ],
     }
 }
 
@@ -56,10 +60,12 @@ async function getUserData():Promise<UserData>{
 async function getAds():Promise<Advert[]>{
     return [
         {
+            id:"123",
             iconImg:"https://www.mtsolar.us/wp-content/uploads/2020/04/avatar-placeholder.png",
             title:"Title",
-            body:"this is the body",
-            link:"/",
+            body:"this is the body aasd qwd qwd qwd qwd qwd asdqwd ",
+            url:"https://www.google.com/",
+            actionButton:"Order Now",
         } as Advert
     ]
 }
