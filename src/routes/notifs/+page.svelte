@@ -1,5 +1,8 @@
 <script lang="ts">
 
+	import { Accordion } from '@skeletonlabs/skeleton';
+	import NotifItem from '$lib/comp/ui/NotifItem.svelte';
+
 	export let data;
 	const {
 		userData,
@@ -12,8 +15,12 @@
 		Notifications
 	</h1>
 	<p>
+		Filters {userData.reportFilters.length}
+	</p>
+	<p>
 		Number of notifications in past week: {userData.zoneReports.length}
 	</p>
+
 </div>
 
 
@@ -21,8 +28,10 @@
 <hr>
 <br>
 
-<div>
-	<p>
-		for zone reports + dropdown + map
-	</p>
-</div>
+
+<Accordion class="flex flex-col gap-2">
+	{#each userData.zoneReports as report}
+		<NotifItem report={report} />
+	{/each}
+
+</Accordion>

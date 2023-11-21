@@ -1,22 +1,20 @@
 interface UserData{
     zones:Zone[]
     zoneReports:Report[]
-    reportFilters:ReportFilter[]
+    reportFilters:CrimeType[]
 }
 
 
 // =======================================
 
 interface Report{
+    id:string
     point:GeoPoint
-    crimeType:"break and enter"|"robbery"
-}
-
-interface ReportFilter{
-    crimeType:"break and enter"|"robbery"
+    crimeType:CrimeType
 }
 
 interface Zone{
+    id:string
     label:string
     point:GeoPoint
     radius:number
@@ -41,4 +39,9 @@ interface Advert{
 interface GeoPoint{
     x:number
     y:number
+}
+
+enum CrimeType{
+    breakAndEnter = "break and enter",
+    robbery = "robbery",
 }

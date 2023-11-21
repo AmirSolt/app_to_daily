@@ -1,4 +1,6 @@
 <script lang="ts">
+	import CreateZoneLink from '$lib/comp/ui/CreateZoneLink.svelte';
+	import ZoneItem from '$lib/comp/ui/ZoneItem.svelte';
 
 	export let data;
 	const {
@@ -17,25 +19,22 @@
 	</p>
 </div>
 
-
 <br>
 <hr>
 <br>
 
 <div>
-    <p>
-		Add Zone Link
-	</p>
+    <CreateZoneLink />
 </div>
 
 <br>
 <hr>
 <br>
 
-<div>
-    <p>
-		For zone link to zone CRUD
-	</p>
+<div class="flex flex-col gap-2">
+	{#each userData.zones as zone}
+		<ZoneItem zone={zone}/>
+	{/each}
 </div>
 
 

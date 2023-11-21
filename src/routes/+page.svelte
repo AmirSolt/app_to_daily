@@ -1,4 +1,6 @@
 <script lang="ts">
+	import AdvertBanner from '$lib/comp/ui/AdvertBanner.svelte';
+	import CreateZoneLink from '$lib/comp/ui/CreateZoneLink.svelte';
 
 	export let data;
 	const {
@@ -6,19 +8,27 @@
 		ads,
 	} = data;
 
+
 </script>
 
-<div>
-	<h1>
-		Ads recieved {ads.length}
-	</h1>
-</div>
+
+
+{#if ads.length>0}
+	<div>
+		<AdvertBanner advert={ads[0]} />
+	</div>
+{/if}
 
 <br>
 <hr>
 <br>
 
 <div>
+
+	<p>
+		Filters {userData.reportFilters.length}
+	</p>
+
 	<h1>
 		Map
 	</h1>
@@ -41,9 +51,7 @@
 <br>
 
 <div>
-	<h1>
-		Add Zone Link
-	</h1>
+	<CreateZoneLink />
 	<p>
 		Number of zones {userData.zones.length}
 	</p>
