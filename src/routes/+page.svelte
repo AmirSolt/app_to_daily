@@ -1,7 +1,7 @@
 <script lang="ts">
-	import AdvertBanner from '$lib/comp/ui/AdvertBanner.svelte';
-	import CreateZoneLink from '$lib/comp/ui/CreateZoneLink.svelte';
-	import ReportFilter from '$lib/comp/ui/ReportFilter.svelte';
+	import AdvertBanner from '$lib/comp/ui/advert/AdvertBanner.svelte';
+	import CreateZone from '$lib/comp/ui/zone/CreateZone.svelte';
+	import ReportFilter from '$lib/comp/ui/filter/ReportFilter.svelte';
 
 	export let data;
 	const {
@@ -57,7 +57,7 @@
 <br>
 
 <div>
-	<CreateZoneLink />
+	<CreateZone />
 	<p>
 		Number of zones {userData.zones.length}
 	</p>

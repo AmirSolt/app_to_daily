@@ -1,8 +1,8 @@
 <script lang="ts">
 
 	import { Accordion } from '@skeletonlabs/skeleton';
-	import NotifItem from '$lib/comp/ui/NotifItem.svelte';
-	import ReportFilter from '$lib/comp/ui/ReportFilter.svelte';
+	import NotifItem from '$lib/comp/ui/notif/NotifItem.svelte';
+	import ReportFilter from '$lib/comp/ui/filter/ReportFilter.svelte';
 
 	export let data;
 	const {

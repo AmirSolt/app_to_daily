@@ -1,6 +1,6 @@
 <script lang="ts">
-	import CreateZoneLink from '$lib/comp/ui/CreateZoneLink.svelte';
-	import ZoneItem from '$lib/comp/ui/ZoneItem.svelte';
+	import CreateZone from '$lib/comp/ui/zone/CreateZone.svelte';
+	import ZoneItem from '$lib/comp/ui/zone/ZoneItem.svelte';
 
 	export let data;
 	const {
@@ -24,7 +24,7 @@
 <br>
 
 <div>
-    <CreateZoneLink />
+    <CreateZone />
 </div>
 
 <br>
