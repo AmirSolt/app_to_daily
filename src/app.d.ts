@@ -4,6 +4,7 @@
 declare namespace App {
 	// interface Locals {}
 	interface PageData {
+		forms:any
 		userData:UserData
 		ads:Advert[]
 	}

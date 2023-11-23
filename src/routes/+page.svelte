@@ -1,6 +1,6 @@
 <script lang="ts">
 	import AdvertBanner from '$lib/comp/ui/advert/AdvertBanner.svelte';
-	import CreateZone from '$lib/comp/ui/zone/CreateZone.svelte';
+	import CreateZoneButton from '$lib/comp/ui/zone/CreateZoneButton.svelte';
 	import ReportFilter from '$lib/comp/ui/filter/ReportFilter.svelte';
 
 	export let data;
@@ -57,7 +57,7 @@
 <br>
 
 <div>
-	<CreateZone />
+	<CreateZoneButton />
 	<p>
 		Number of zones {userData.zones.length}
 	</p>

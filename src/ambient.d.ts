@@ -11,6 +11,7 @@ interface Report{
     id:string
     point:GeoPoint
     crimeType:CrimeTypes
+    occurDate:Date
 }
 
 interface Zone{

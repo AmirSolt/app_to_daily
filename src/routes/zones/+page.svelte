@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CreateZone from '$lib/comp/ui/zone/CreateZone.svelte';
+	import CreateZoneButton from '$lib/comp/ui/zone/CreateZoneButton.svelte';
 	import ZoneItem from '$lib/comp/ui/zone/ZoneItem.svelte';
 
 	export let data;
@@ -24,7 +24,7 @@
 <br>
 
 <div>
-    <CreateZone />
+    <CreateZoneButton />
 </div>
 
 <br>
@@ -33,8 +33,7 @@
 
 <div class="flex flex-col gap-2">
 	{#each userData.zones as zone}
-		<ZoneItem zone={zone}/>
+		<ZoneItem {zone}/>
 	{/each}
 </div>
-
 

@@ -1,8 +1,4 @@
-import { loadComp, actionsComp } from '$lib/comp/ui/filter/filterForm.server.js';
-
-export const load = async (event) => {
-    return loadComp(event)
-};
+import { actionsComp } from '$lib/comp/ui/filter/filterForm.server.js';
 
 export const actions = {
     default: (event)=>{

@@ -9,19 +9,20 @@
 	import { filterSchema } from '$lib/utils/schema';
 	import { page } from '$app/stores';
 	import { invalidate } from '$app/navigation';
-	import { onMount } from 'svelte';
-
+	import type { SvelteComponent } from 'svelte';
+	export let parent:SvelteComponent
 	export let filters:CrimeTypes[]
 	let toastStore = getToastStore();
 
 	// Modal
-	const { form, enhance } = superForm($page.data.form, {
+	const { form, enhance } = superForm($page.data.forms.filter.form, {
 		validators: filterSchema,
 		onError: ({result}) => {
 			toastError(result.error.message, toastStore);
 		},
 		onResult(event) {
 			invalidate("data:userData")
+			parent.onClose()
 		},
 		taintedMessage: null
 	});
@@ -32,10 +33,7 @@
 
 	$form.filters = filters
 	console.log($form.filters)
-	// init
-	onMount(()=>{
-		
-	})
+
 
 </script>
 

@@ -35,9 +35,9 @@
 <hr>
 <br>
 
-<Accordion class="flex flex-col gap-2">
+
+<div class="flex flex-col justify-center items-center gap-4">
 	{#each userData.zoneReports as report}
 		<NotifItem report={report} />
 	{/each}
-
-</Accordion>
+</div>

@@ -1,11 +1,11 @@
 <script lang="ts">
+
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
-    import FilterModal from './FilterModal.svelte';
-    import type { CrimeTypes } from "$lib/utils/globals";
-    export let filters:CrimeTypes[]
+    import CreateModal from './modals/CreateModal.svelte';
 
-    const modalComponent: ModalComponent = { ref: FilterModal, props:{filters} };
+
+    const modalComponent: ModalComponent = { ref: CreateModal };
 
     const modal: ModalSettings = {
         type: 'component',
@@ -19,13 +19,8 @@
 
 </script>
 
-<div>
-    <h1>
-        Filter
-    </h1>
 
-    <button type="button" class="btn variant-filled" on:click={openModal}>
-        Filter
-    </button>
 
-</div>
+<button type="button" class="btn variant-filled" on:click={openModal}>
+	Create Zone
+</button>

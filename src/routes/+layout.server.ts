@@ -1,9 +1,18 @@
 import { CrimeTypes } from "$lib/utils/globals";
+import * as zoneForm from '$lib/comp/ui/zone/zoneForm.server.js';
+import * as filterForm from '$lib/comp/ui/filter/filterForm.server.js';
 
 
-export const load = async () => {
+export const load = async (event) => {
     
+
+  
+
     return {
+        forms:{
+            zone:zoneForm.loadComp(event),
+            filter:filterForm.loadComp(event),
+        },
         userData: getUserData(),
         ads: getAds(),
     }
@@ -18,35 +27,38 @@ async function getUserData():Promise<UserData>{
                 label:"Zone #1",
                 point:{x:1,y:1},
                 radius:5,
-                address:"",
+                address:"asdqwd",
             } as Zone,
             {
                 id:"143",
                 label:"Zone #2",
                 point:{x:1,y:1},
                 radius:5,
-                address:"",
+                address:"asdqwd",
             } as Zone,
             {
                 id:"143",
                 label:"Zone #3",
                 point:{x:1,y:1},
                 radius:5,
-                address:"",
+                address:"asdqwd",
             } as Zone
         ],
         zoneReports:[
             { 
                 point:{x:1,y:1},
-                crimeType:CrimeTypes.breakAndEnter
+                crimeType:CrimeTypes.breakAndEnter,
+                occurDate:new Date(),
             } as Report,
             { 
                 point:{x:1,y:1},
-                crimeType:CrimeTypes.robbery
+                crimeType:CrimeTypes.robbery,
+                occurDate:new Date(),
             } as Report,
             { 
                 point:{x:1,y:1},
-                crimeType:CrimeTypes.breakAndEnter
+                crimeType:CrimeTypes.breakAndEnter,
+                occurDate:new Date(),
             } as Report
         ],
         reportFilters:[
