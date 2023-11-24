@@ -1,4 +1,5 @@
 interface UserData{
+    id:string
     zones:Zone[]
     zoneReports:Report[]
     reportFilters:CrimeTypes[]

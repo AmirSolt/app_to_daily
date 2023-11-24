@@ -50,7 +50,7 @@
 			<article>Body</article>
 		</div>
 
-		<form class="flex flex-col gap-6" method="POST" use:enhance action="/forms/filters">
+		<form class="flex flex-col gap-6" method="POST" use:enhance action="/api/forms/filters">
 
 			<div>
 				<ListBox multiple>

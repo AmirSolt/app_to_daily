@@ -51,7 +51,7 @@
 			<article>Body</article>
 		</div>
 
-		<form class="flex flex-col gap-6" method="POST" use:enhance action="/forms/zones?/edit">
+		<form class="flex flex-col gap-6" method="POST" use:enhance action="/api/forms/zones?/edit">
 
 			<input
 				class="input"

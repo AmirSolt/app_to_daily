@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
     import { Avatar } from '@skeletonlabs/skeleton';
+	import { adCounter } from './advertCounter';
     export let advert:Advert
-
+    export let userData:UserData
+    const advertComponentId = "0" // This Banner is id=0
 
     async function advertClick(){
         console.log("Click Submitted")
+        await adCounter(userData.id, advertComponentId)
         goto(advert.url)
     }
 

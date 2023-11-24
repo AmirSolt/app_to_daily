@@ -21,6 +21,7 @@ export const load = async (event) => {
 
 async function getUserData():Promise<UserData>{
     return {
+        id:"test_user",
         zones:[
             {
                 id:"143",

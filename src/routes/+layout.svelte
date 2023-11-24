@@ -3,6 +3,7 @@
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';    
 	import { initializeStores } from '@skeletonlabs/skeleton';
 	import {Modal} from '@skeletonlabs/skeleton';
+	import ShareButton from '$lib/comp/ui/share/ShareButton.svelte';
 
 
 
@@ -46,6 +47,7 @@
 				>
 					Zones
 				</a>
+				<ShareButton />
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
