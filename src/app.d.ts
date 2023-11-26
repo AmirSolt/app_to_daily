@@ -1,12 +1,19 @@
-// See https://kit.svelte.dev/docs/types#app
-// for information about these interfaces
-// and what to do when importing types
+// npx supabase gen types typescript --project-id "kibduavyrbusgbrjjylc" --schema public > ./src/lib/utils/database.types.ts
+
+import { SupabaseClient, Session } from '@supabase/supabase-js'
+import type { Database } from "./generated.types";
+
+
 declare namespace App {
-	// interface Locals {}
+    interface Locals {
+		supabaseAuthServer: SupabaseClient<Database>
+		getSession(): Promise<Session | null>
+	}
 	interface PageData {
+		session: Session | null
+		profile: Profile | null
+		ads:AdvertContent[]
 		forms:any
-		userData:UserData
-		ads:Advert[]
 	}
 	// interface Error {}
 	// interface Platform {}
