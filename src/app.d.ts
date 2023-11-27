@@ -1,20 +1,21 @@
 // npx supabase gen types typescript --project-id "kibduavyrbusgbrjjylc" --schema public > ./src/lib/utils/database.types.ts
 
 import { SupabaseClient, Session } from '@supabase/supabase-js'
-import type { Database } from "./generated.types";
+import type { Database } from '$lib/utils/database.types.js'
 
-
-declare namespace App {
+declare global {
+  namespace App {
     interface Locals {
-		supabaseAuthServer: SupabaseClient<Database>
-		getSession(): Promise<Session | null>
-	}
-	interface PageData {
-		session: Session | null
-		profile: Profile | null
-		ads:AdvertContent[]
-		forms:any
-	}
-	// interface Error {}
-	// interface Platform {}
+      supabaseAuthServer: SupabaseClient<Database>
+      getSession(): Promise<Session | null>
+    }
+    interface PageData {
+      // session: Session | null
+      profile: Database["public"]["Tables"]["profiles"]["Row"] | null
+      adContents:Database["public"]["Tables"]["advert_content"]["Row"][]
+      forms:any
+    }
+    // interface Error {}
+    // interface Platform {}
+  }
 }

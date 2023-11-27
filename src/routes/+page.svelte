@@ -1,4 +1,23 @@
 <script lang="ts">
+	export let data;
+	const {
+		profile,
+		adContents,
+		forms,
+	} = data;
+
+	console.log(profile)
+	console.log(adContents)
+	console.log(forms)
+
+	// let centerMap:Point
+	// let scannedReports:Report[]=[]
+</script>
+
+
+
+
+<!-- <script lang="ts">
 	import AdvertBanner from '$lib/comp/ui/advert/AdvertBanner.svelte';
 	import CreateZoneButton from '$lib/comp/ui/zone/CreateZoneButton.svelte';
 	import ReportFilter from '$lib/comp/ui/filter/ReportFilter.svelte';
@@ -66,4 +85,4 @@
 	</p>
 </div>
 
-
+ -->
