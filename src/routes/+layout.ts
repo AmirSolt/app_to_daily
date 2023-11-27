@@ -1,8 +1,8 @@
 
 export const load = async ({ data, depends }) => {
-    depends('data:profile');
+    depends('data:userData');
     return { 
-        profile:data.profile,
+        userData:data.userData,
         adContents:data.adContents,
         forms:data.forms,
     };

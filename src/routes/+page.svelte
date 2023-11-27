@@ -1,14 +1,14 @@
 <script lang="ts">
 	export let data;
 	const {
-		profile,
+		userData,
 		adContents,
 		forms,
 	} = data;
 
-	console.log(profile)
-	console.log(adContents)
-	console.log(forms)
+	console.log("userData",userData)
+	console.log("adContents",adContents)
+	console.log("forms",forms)
 
 	// let centerMap:Point
 	// let scannedReports:Report[]=[]

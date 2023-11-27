@@ -1,4 +1,4 @@
-import { fetchProfile, fetchAdContents } from '$lib/funcs/database.server.js';
+import { fetchUserData, fetchAdContents } from '$lib/funcs/database.server.js';
 import * as zoneForm from '$lib/comp/ui/zone/zoneForm.server.js';
 import * as filterForm from '$lib/comp/ui/filter/filterForm.server.js';
 import type { Session } from "@supabase/supabase-js";
@@ -22,7 +22,7 @@ export const load = async (event) => {
     console.log(session)
 
     return {
-        profile: fetchProfile(session?.user),
+        userData: fetchUserData(session?.user),
         adContents: fetchAdContents(session?.user),
         forms:{
             zone:zoneForm.loadComp(event),

@@ -6,6 +6,7 @@ import { createClient } from '@supabase/supabase-js'
 import type { Database } from '$lib/utils/database.types'
 import type { User } from '@supabase/supabase-js'
 import { error } from '@sveltejs/kit'
+import type { UserData } from '../../ambient'
 
 
 // Create a single supabase client for interacting with your database
@@ -18,14 +19,14 @@ export const supabaseAdmin = createClient(
 )
 
 
-export async function fetchProfile(user:User|undefined):Promise<Database["public"]["Tables"]["profiles"]["Row"]|null>{
+export async function fetchUserData(user:User|undefined):Promise<UserData|null>{
     if(user==undefined){
         console.log("No User")
         return null
     }
     const { data, error: err } = await supabaseAdmin
         .from('profiles')
-        .select(`*,zones(*)`)
+        .select(`*,zones(*,zone_reports(reports(*)))`)
         .eq('id', user.id)
         .single()
     if (err != null) {
@@ -33,7 +34,14 @@ export async function fetchProfile(user:User|undefined):Promise<Database["public
             message: err.message,
         })
     }
-    return data
+
+    let response:UserData = {
+        profile:removeKey(data,"zones") as Database["public"]["Tables"]["profiles"]["Row"],
+        zones:removeKey(data.zones,"zone_reports") as Database["public"]["Tables"]["zones"]["Row"][],
+        zoneReports:data.zones.map((r:any)=>r.zone_reports.map((e:any)=>e.reports)) as Database["public"]["Tables"]["reports"]["Row"][],
+    }
+
+    return response
 }
 
 export async function fetchAdContents(user:User|undefined):Promise<Database["public"]["Tables"]["advert_content"]["Row"][]|null>{
@@ -61,3 +69,10 @@ export async function fetchAdContents(user:User|undefined):Promise<Database["pub
 //     }
 //     return true
 // }
+
+
+function removeKey(obj:any,key:string){
+    let copy = JSON.parse(JSON.stringify(obj))
+    delete copy[key]
+    return copy
+}
