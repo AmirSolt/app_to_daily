@@ -11,7 +11,7 @@ declare global {
     }
     interface PageData {
       // session: Session | null
-      userData: UserData | null
+      userData: UserData
       adContents:Database["public"]["Tables"]["advert_content"]["Row"][]
       forms:any
     }

@@ -7,11 +7,12 @@
 	import { toastError } from '$lib/utils/toastHelper.js';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	import { filterSchema } from '$lib/utils/schema';
+	import type { SvelteComponent } from 'svelte';
 	import { page } from '$app/stores';
 	import { invalidate } from '$app/navigation';
-	import type { SvelteComponent } from 'svelte';
+	
+    let filters:CrimeTypes[] = $page.data.userData.profile.report_filters
 	export let parent:SvelteComponent
-	export let filters:CrimeTypes[]
 	let toastStore = getToastStore();
 
 	// Modal
@@ -21,7 +22,8 @@
 			toastError(result.error.message, toastStore);
 		},
 		onResult(event) {
-			invalidate("data:userData")
+			// $page.data.userData.profile.report_filters = $form.filters
+			invalidate('data:userData')
 			parent.onClose()
 		},
 		taintedMessage: null

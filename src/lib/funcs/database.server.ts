@@ -19,10 +19,12 @@ export const supabaseAdmin = createClient(
 )
 
 
-export async function fetchUserData(user:User|undefined):Promise<UserData|null>{
+export async function fetchUserData(user:User|undefined):Promise<UserData>{
     if(user==undefined){
         console.log("No User")
-        return null
+        throw error(400, {
+            message: "User is not logged in",
+        })
     }
     const { data, error: err } = await supabaseAdmin
         .from('profiles')
@@ -38,16 +40,16 @@ export async function fetchUserData(user:User|undefined):Promise<UserData|null>{
     let response:UserData = {
         profile:removeKey(data,"zones") as Database["public"]["Tables"]["profiles"]["Row"],
         zones:removeKey(data.zones,"zone_reports") as Database["public"]["Tables"]["zones"]["Row"][],
-        zoneReports:data.zones.map((r:any)=>r.zone_reports.map((e:any)=>e.reports)) as Database["public"]["Tables"]["reports"]["Row"][],
+        zoneReports:data.zones.map((r:any)=>r.zone_reports.map((e:any)=>e.reports)).flat() as Database["public"]["Tables"]["reports"]["Row"][],
     }
 
     return response
 }
 
-export async function fetchAdContents(user:User|undefined):Promise<Database["public"]["Tables"]["advert_content"]["Row"][]|null>{
+export async function fetchAdContents(user:User|undefined):Promise<Database["public"]["Tables"]["advert_content"]["Row"][]>{
     if(user==undefined){
         console.log("No User")
-        return null
+        return []
     }
     const { data, error: err } = await supabaseAdmin
         .from('advert_content')

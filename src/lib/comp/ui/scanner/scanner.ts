@@ -1,6 +1,7 @@
 import type { CrimeTypes } from "$lib/utils/globals"
+import type { Database } from "$lib/utils/database.types";
 
-export async function scan(point:GeoPoint, filters:CrimeTypes[]):Promise<Report[]>{
+export async function scan(point:GeoPoint, filters:CrimeTypes[]):Promise<Database["public"]["Tables"]["reports"]["Row"][]>{
     console.log("Scan")
 
 

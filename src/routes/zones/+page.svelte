@@ -5,7 +5,7 @@
 	export let data;
 	const {
 		userData,
-		ads,
+		adContents,
 	} = data;
 
 </script>

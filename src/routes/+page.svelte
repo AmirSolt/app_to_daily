@@ -1,4 +1,9 @@
 <script lang="ts">
+	import AdvertBanner from '$lib/comp/ui/advert/AdvertBanner.svelte';
+	import CreateZoneButton from '$lib/comp/ui/zone/CreateZoneButton.svelte';
+	import ReportFilter from '$lib/comp/ui/filter/ReportFilter.svelte';
+	import ScannerButton from '$lib/comp/ui/scanner/ScannerButton.svelte';
+	import type { Database } from '$lib/utils/database.types.js';
 	export let data;
 	const {
 		userData,
@@ -6,39 +11,19 @@
 		forms,
 	} = data;
 
-	console.log("userData",userData)
-	console.log("adContents",adContents)
-	console.log("forms",forms)
 
-	// let centerMap:Point
-	// let scannedReports:Report[]=[]
-</script>
-
-
-
-
-<!-- <script lang="ts">
-	import AdvertBanner from '$lib/comp/ui/advert/AdvertBanner.svelte';
-	import CreateZoneButton from '$lib/comp/ui/zone/CreateZoneButton.svelte';
-	import ReportFilter from '$lib/comp/ui/filter/ReportFilter.svelte';
-	import ScannerButton from '$lib/comp/ui/scanner/ScannerButton.svelte';
-
-	export let data;
-	const {
-		userData,
-		ads,
-	} = data;
 	let centerMap:GeoPoint
-	let scannedReports:Report[]=[]
-
-
+	let scannedReports:Database["public"]["Tables"]["reports"]["Row"][]=[]
 </script>
 
 
 
-{#if ads.length>0}
+
+
+
+{#if adContents.length>0}
 	<div>
-		<AdvertBanner advert={ads[0]} {userData} />
+		<AdvertBanner />
 	</div>
 {/if}
 
@@ -47,7 +32,7 @@
 <br>
 
 
-<ReportFilter filters={userData.reportFilters} />
+<ReportFilter  />
 
 
 <br>
@@ -56,7 +41,7 @@
 
 <div>
 
-	<ScannerButton bind:scannedReports={scannedReports} {centerMap} filters={userData.reportFilters} />
+	<ScannerButton bind:scannedReports={scannedReports} point={centerMap} />
 	<h1>
 		Map
 	</h1>
@@ -85,4 +70,4 @@
 	</p>
 </div>
 
- -->
+

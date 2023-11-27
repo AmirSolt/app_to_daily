@@ -1,14 +1,16 @@
 <script lang="ts">
 	import type { CrimeTypes } from "$lib/utils/globals";
-
+    import { page } from "$app/stores";
+    import type { Database } from "$lib/utils/database.types";
 
     import { scan } from "./scanner";
-    export let centerMap:GeoPoint
-    export let scannedReports:Report[]
-    export let filters:CrimeTypes[]
+    export let point:GeoPoint
+    export let scannedReports:Database["public"]["Tables"]["reports"]["Row"][]
+    let filters:CrimeTypes[] = $page.data.userData.report_filters
+
     async function onScan(){
-        
-        scannedReports = await scan(centerMap, filters)
+        const newScannedReports:Database["public"]["Tables"]["reports"]["Row"][] = await scan(point, filters)
+        scannedReports.push(...newScannedReports)
     }
 
 

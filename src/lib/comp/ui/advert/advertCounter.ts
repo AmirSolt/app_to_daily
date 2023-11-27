@@ -1,4 +1,4 @@
-export async function adCounter(userId:string, advertComponentId:number){
+export async function adCounter(userId:string, advertComponentId:string){
     // POST REQ
     const response = await fetch("/api/advertCounter", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.

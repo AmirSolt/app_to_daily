@@ -4,8 +4,9 @@
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
     import EditModal from './modals/EditModal.svelte';
     import RemoveZoneButton from './RemoveZoneButton.svelte';
+    import type { Database } from '$lib/utils/database.types';
 
-    export let zone:Zone
+    export let zone:Database["public"]["Tables"]["zones"]["Row"]
 
     const modalComponent: ModalComponent = { ref: EditModal, props:{zone} };
 
@@ -31,12 +32,12 @@
         <RemoveZoneButton {zone} />
     </header>
 	<section >
-        <div class="p-4">
+        <div class="p-4 text-start">
             <div>
                 id: {zone.id}
             </div>
             <div>
-                point: {zone.point.x}, {zone.point.y}
+                point: {zone.point}
             </div>
             <div>
                 radius: {zone.radius}

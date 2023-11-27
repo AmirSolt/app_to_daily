@@ -7,8 +7,9 @@
 	export let data;
 	const {
 		userData,
-		ads,
+		adContents,
 	} = data;
+
 
 </script>
 <div>
@@ -16,7 +17,7 @@
 		Notifications
 	</h1>
 	<p>
-		Filters {userData.reportFilters.length}
+		Filters {userData.profile.report_filters.length}
 	</p>
 	<p>
 		Number of notifications in past week: {userData.zoneReports.length}
@@ -29,7 +30,7 @@
 <hr>
 <br>
 
-<ReportFilter filters={userData.reportFilters} />
+<ReportFilter />
 
 <br>
 <hr>
@@ -38,6 +39,6 @@
 
 <div class="flex flex-col justify-center items-center gap-4">
 	{#each userData.zoneReports as report}
-		<NotifItem report={report} />
+		<NotifItem {report} />
 	{/each}
 </div>

@@ -5,3 +5,8 @@ interface UserData{
     zones:Database["public"]["Tables"]["zones"]["Row"][]
     zoneReports:Database["public"]["Tables"]["reports"]["Row"][]
 }
+
+interface GeoPoint{
+    x:number
+    y:number
+}
