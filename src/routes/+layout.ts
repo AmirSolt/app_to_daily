@@ -1,13 +1,13 @@
 
 export const load = async ({ data, depends }) => {
-    depends('data:userData');
+    depends('data:user');
 
 
-    data.userData.zoneReports = data.userData.zoneReports
-                                    .filter(r=>!data.userData.profile.report_filters.includes(r.crime_type))
+    data.user.zoneReports = data.user.zoneReports
+                                    .filter(r=>!data.user.crimeTypeFilters.includes(r.Crime))
 
     return { 
-        userData:data.userData,
+        user:data.user,
         adContents:data.adContents,
         forms:data.forms,
     };

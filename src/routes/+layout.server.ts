@@ -2,12 +2,16 @@ import * as zoneForm from '$lib/comp/ui/zone/zoneForm.server.js';
 import * as filterForm from '$lib/comp/ui/filter/filterForm.server.js';
 import { error } from '@sveltejs/kit';
 import prisma from '$lib/funcs/prisma.server.js';
-import { Prisma } from '@prisma/client';
+import { Prisma, Region, type User } from '@prisma/client';
 
 export const load = async (event) => {
 
     let user = await prisma.user.findFirst({
-        where:{id:"123"}
+        where:{id:"123"},
+        include:{
+            zones:true,
+            zoneReports:true,
+        }
     })
 
     if(user==null){
@@ -16,7 +20,12 @@ export const load = async (event) => {
             user = await prisma.user.create({
                 data:{
                     id:"123",
-                    reportFilters:[]
+                    region: Region.TORONTO,
+                    crimeTypeFilters:[],
+                },
+                include:{
+                    zones:true,
+                    zoneReports:true,
                 }
             })
           } catch (e) {
@@ -29,16 +38,13 @@ export const load = async (event) => {
           }
     }
 
-    let report = await prisma.report.findFirst({where:{id:3}})
-    if(report){
-        console.log(report.lat)
-    }
+    
 
     console.log("USER >>>>",user)
 
     return {
-        // userData: fetchUserData(session?.user),
-        // adContents: fetchAdContents(session?.user),
+        user,
+        adContents: prisma.adContent.findMany(),
         forms:{
             zone:zoneForm.loadComp(event),
             filter:filterForm.loadComp(event),

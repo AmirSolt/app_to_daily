@@ -6,7 +6,7 @@
     import { scan } from "./scanner";
     export let point:GeoPoint
     export let scannedReports:Database["public"]["Tables"]["reports"]["Row"][]
-    let filters:CrimeTypes[] = $page.data.userData.report_filters
+    let filters:CrimeTypes[] = $page.data.user.report_filters
 
     async function onScan(){
         const newScannedReports:Database["public"]["Tables"]["reports"]["Row"][] = await scan(point, filters)

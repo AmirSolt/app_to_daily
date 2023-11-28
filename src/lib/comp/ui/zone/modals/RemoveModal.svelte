@@ -20,7 +20,7 @@
 			toastError(result.error.message, toastStore);
 		},
 		onResult(event) {
-			invalidate("data:userData")
+			invalidate("data:user")
 			parent.onClose()
 		},
 		taintedMessage: null

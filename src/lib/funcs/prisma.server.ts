@@ -1,4 +1,4 @@
-// npx prisma migrate dev
+// npx prisma migrate dev --name init
 
 // notes:
     // to reproduce this database you need to add a postgres function + trigger

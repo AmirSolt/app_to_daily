@@ -3,17 +3,17 @@
 	import CreateZoneButton from '$lib/comp/ui/zone/CreateZoneButton.svelte';
 	import ReportFilter from '$lib/comp/ui/filter/ReportFilter.svelte';
 	import ScannerButton from '$lib/comp/ui/scanner/ScannerButton.svelte';
-	import type { Database } from '$lib/utils/database.types.js';
+	import type { Report } from '@prisma/client';
 	export let data;
 	const {
-		userData,
+		user,
 		adContents,
 		forms,
 	} = data;
 
 
 	let centerMap:GeoPoint
-	let scannedReports:Database["public"]["Tables"]["reports"]["Row"][]=[]
+	let scannedReports:Report[]=[]
 </script>
 
 
@@ -47,7 +47,7 @@
 	</h1>
 
 	<p>
-		Zone Reports {userData.zoneReports.length}
+		Zone Reports {user.zoneReports.length}
 	</p>
 
 	<p>
@@ -55,7 +55,7 @@
 	</p>
 
 	<p>
-		Total Reports {userData.zoneReports.length + scannedReports.length}
+		Total Reports {user.zoneReports.length + scannedReports.length}
 	</p>
 </div>
 
@@ -66,7 +66,7 @@
 <div>
 	<CreateZoneButton />
 	<p>
-		Number of zones {userData.zones.length}
+		Number of zones {user.zones.length}
 	</p>
 </div>
 

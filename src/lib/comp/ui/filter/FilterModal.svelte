@@ -11,7 +11,7 @@
 	import { page } from '$app/stores';
 	import { invalidate } from '$app/navigation';
 	
-    let filters:CrimeTypes[] = $page.data.userData.profile.report_filters
+    let filters:CrimeTypes[] = $page.data.user.profile.report_filters
 	export let parent:SvelteComponent
 	let toastStore = getToastStore();
 
@@ -22,8 +22,8 @@
 			toastError(result.error.message, toastStore);
 		},
 		onResult(event) {
-			// $page.data.userData.profile.report_filters = $form.filters
-			invalidate('data:userData')
+			// $page.data.user.profile.report_filters = $form.filters
+			invalidate('data:user')
 			parent.onClose()
 		},
 		taintedMessage: null

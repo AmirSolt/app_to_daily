@@ -1,31 +1,88 @@
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["postgresqlExtensions"]
+    provider        = "prisma-client-js"
+    previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-  provider   = "postgresql"
-  url        = env("DATABASE_URL")
-  extensions = [postgis()]
+    provider   = "postgresql"
+    url        = env("DATABASE_URL")
+    extensions = [postgis()]
 }
 
 model User {
-  id            String      @id
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  reportFilters CrimeType[]
+    id               String         @id
+    createdAt        DateTime       @default(now())
+    updatedAt        DateTime       @updatedAt
+    region           Region
+    zones            Zone[]         
+    zoneReports      ReportOnZone[]
+    adClicks         AdClick[]
+    crimeTypeFilters CrimeType[]
+}
+
+model Zone {
+    id            Int                                  @id @default(autoincrement())
+    label         String
+    address       String
+    radius        Float
+    user          User                                 @relation(fields: [userId], references: [id])
+    userId        String
+    reportOnZones ReportOnZone[]
+    long          Float
+    lat           Float
+    point         Unsupported("geometry(Point, 3857)")
+
+    @@index([point], map: "zone_idx", type: Gist)
 }
 
 model Report {
-  id    Int                     @id @default(autoincrement())
-  long Float 
-  lat Float
-  point Unsupported("geometry(Point, 3857)")
+    id            Int                                  @id @default(autoincrement())
+    crimeType     CrimeType
+    occur_at      DateTime
+    region        Region
+    reportOnZones ReportOnZone[]
+    long          Float
+    lat           Float
+    point         Unsupported("geometry(Point, 3857)")
 
-  @@index([point], map: "report_idx", type: Gist)
+    @@index([point], map: "report_idx", type: Gist)
+}
+
+model ReportOnZone {
+    report   Report @relation(fields: [reportId], references: [id])
+    reportId Int
+    zone     Zone   @relation(fields: [zoneId], references: [id])
+    zoneId   Int
+    user     User   @relation(fields: [userId], references: [id])
+    userId   String
+
+    @@id([reportId, zoneId])
+}
+
+model AdContent {
+    id         Int    @id @default(autoincrement())
+    imgSrc     String
+    title      String
+    body       String
+    buttonText String
+}
+
+model AdClick {
+    id          Int         @id @default(autoincrement())
+    adComponent AdComponent
+    user        User        @relation(fields: [userId], references: [id])
+    userId      String
+}
+
+enum Region {
+    TORONTO
 }
 
 enum CrimeType {
-  BREAKANDENTER
-  ROBBERY
+    BREAKANDENTER
+    ROBBERY
+}
+
+enum AdComponent {
+    BANNER
 }

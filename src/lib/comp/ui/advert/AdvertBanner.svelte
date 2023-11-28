@@ -5,13 +5,13 @@
     import { page } from '$app/stores';
     const advertComponentId = "Img Banner" // This Banner is id=0
 
-    let userData = $page.data.userData
+    let user = $page.data.user
     let advert = $page.data.adContents[0]
 
     async function advertClick(){
         console.log("Click Submitted")
         if(advert.url != null){
-            await adCounter(userData.id, advertComponentId)
+            await adCounter(user.id, advertComponentId)
             goto(advert.url)
         }
     }
