@@ -3,10 +3,9 @@
 import { PUBLIC_SUPABASE_URL } from '$env/static/public'
 import { PRIVATE_SERVICE_ROLE_KEY_SUPABASE } from '$env/static/private'
 import { createClient } from '@supabase/supabase-js'
-import type { Database } from '$lib/utils/database.types'
+import type { Database, UserData } from '$lib/utils/database.types'
 import type { User } from '@supabase/supabase-js'
 import { error } from '@sveltejs/kit'
-import type { UserData } from '../../ambient'
 
 
 // Create a single supabase client for interacting with your database
@@ -42,6 +41,8 @@ export async function fetchUserData(user:User|undefined):Promise<UserData>{
         zones:removeKey(data.zones,"zone_reports") as Database["public"]["Tables"]["zones"]["Row"][],
         zoneReports:data.zones.map((r:any)=>r.zone_reports.map((e:any)=>e.reports)).flat() as Database["public"]["Tables"]["reports"]["Row"][],
     }
+
+    
 
     return response
 }

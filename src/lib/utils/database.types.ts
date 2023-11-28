@@ -1,3 +1,11 @@
+export interface UserData{
+  profile:Database["public"]["Tables"]["profiles"]["Row"]
+  zones:Database["public"]["Tables"]["zones"]["Row"][]
+  zoneReports:Database["public"]["Tables"]["reports"]["Row"][]
+}
+
+
+
 export type Json =
   | string
   | number
@@ -110,14 +118,14 @@ export interface Database {
           crime_type: string
           id: string
           occur_at: string
-          point: unknown
+          point: GeoPoint
         }
         Insert: {
           created_at?: string
           crime_type: string
           id: string
           occur_at: string
-          point: unknown
+          point: GeoPoint
         }
         Update: {
           created_at?: string
@@ -170,7 +178,7 @@ export interface Database {
           created_at: string
           id: string
           label: string
-          point: unknown
+          point: GeoPoint
           radius: number
           user: string
         }
@@ -179,7 +187,7 @@ export interface Database {
           created_at?: string
           id?: string
           label: string
-          point: unknown
+          point: GeoPoint
           radius?: number
           user: string
         }

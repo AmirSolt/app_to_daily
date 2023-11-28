@@ -8,7 +8,8 @@
 	import { page } from '$app/stores';
 	import { invalidate } from '$app/navigation';
 	import type { SvelteComponent } from 'svelte';
-    export let zone:Zone
+	import type { Database } from '$lib/utils/database.types';
+    export let zone:Database["public"]["Tables"]["zones"]["Row"]
 	export let parent:SvelteComponent
 	let toastStore = getToastStore();
 
@@ -33,8 +34,8 @@
     $form.label = zone.label
     $form.address = zone.address
     $form.radius = zone.radius
-    $form.x = zone.point.x
-    $form.y = zone.point.y
+    $form.long = zone.point.long
+    $form.lat = zone.point.lat
 
 </script>
 
@@ -90,8 +91,8 @@
             />
 
 			<input type="hidden" name="id" bind:value={$form.id}>
-			<input type="hidden" name="x" bind:value={$form.x}>
-			<input type="hidden" name="y" bind:value={$form.y}>
+			<input type="hidden" name="x" bind:value={$form.long}>
+			<input type="hidden" name="y" bind:value={$form.lat}>
 
 
 			<div class="flex justify-end">

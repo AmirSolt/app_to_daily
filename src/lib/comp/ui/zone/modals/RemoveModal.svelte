@@ -8,7 +8,8 @@
 	import { page } from '$app/stores';
 	import { invalidate } from '$app/navigation';
 	import type { SvelteComponent } from 'svelte';
-    export let zone:Zone
+	import type { Database } from '$lib/utils/database.types';
+    export let zone:Database["public"]["Tables"]["zones"]["Row"]
 	export let parent:SvelteComponent
 	let toastStore = getToastStore();
 

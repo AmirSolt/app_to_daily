@@ -29,8 +29,8 @@
 
 	function onGetAddress(){
 		$form.address="adasd"
-		$form.x = 0
-		$form.y = 0
+		$form.long = 0
+		$form.lat = 0
 	}
 	$form.radius = 5
 	onGetAddress()
@@ -88,8 +88,8 @@
 				{...$constraints.radius}
 			/>
 
-			<input type="hidden" name="x" bind:value={$form.x}>
-			<input type="hidden" name="y" bind:value={$form.y}>
+			<input type="hidden" name="long" bind:value={$form.long}>
+			<input type="hidden" name="lat" bind:value={$form.lat}>
 
 
 			<div class="flex justify-end">
