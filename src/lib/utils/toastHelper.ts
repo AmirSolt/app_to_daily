@@ -11,7 +11,7 @@ export function toastError(message:string="Something went wrong!", toastStore:an
     };
     toastStore.trigger(t);
     if(isErr)
-		throw error(400, message);
+		throw error(500, message);
 }
 
 

@@ -23,7 +23,7 @@ export const actionsComp = {
 		const form = await superValidate(event, createZoneSchema)
 		
 		if (!form.valid) {
-			return fail(400, { form })
+			return fail(500, { form })
 		}
 
         // update database value
@@ -36,7 +36,7 @@ export const actionsComp = {
 		const form = await superValidate(event, removeZoneSchema)
 		
 		if (!form.valid) {
-			return fail(400, { form })
+			return fail(500, { form })
 		}
 
         // update database value
@@ -49,7 +49,7 @@ export const actionsComp = {
 		const form = await superValidate(event, editZoneSchema)
 		
 		if (!form.valid) {
-			return fail(400, { form })
+			return fail(500, { form })
 		}
 
         // update database value

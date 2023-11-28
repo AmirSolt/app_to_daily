@@ -1,0 +1,31 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [postgis()]
+}
+
+model User {
+  id            String      @id
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  reportFilters CrimeType[]
+}
+
+model Report {
+  id    Int                     @id @default(autoincrement())
+  long Float 
+  lat Float
+  point Unsupported("geometry(Point, 3857)")
+
+  @@index([point], map: "report_idx", type: Gist)
+}
+
+enum CrimeType {
+  BREAKANDENTER
+  ROBBERY
+}

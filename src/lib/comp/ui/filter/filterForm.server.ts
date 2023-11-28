@@ -17,7 +17,7 @@ export const actionsComp = {
 		const form = await superValidate(event, filterSchema)
 		
 		if (!form.valid) {
-			return fail(400, { form })
+			return fail(500, { form })
 		}
 
         // update database value

@@ -1,29 +1,44 @@
-import { fetchUserData, fetchAdContents } from '$lib/funcs/database.server.js';
 import * as zoneForm from '$lib/comp/ui/zone/zoneForm.server.js';
 import * as filterForm from '$lib/comp/ui/filter/filterForm.server.js';
-import type { Session } from "@supabase/supabase-js";
 import { error } from '@sveltejs/kit';
+import prisma from '$lib/funcs/prisma.server.js';
+import { Prisma } from '@prisma/client';
 
 export const load = async (event) => {
-    let session:Session|null = await event.locals.getSession()
-    if(session==undefined){
-        const { data, error:err } = await event.locals.supabaseAuthServer.auth.signUp({
-            email: 'example123@email.com',
-            password: 'example-password',
-        })
-        if (err != null) {
-            throw error(400, {
-                message: err.message,
+
+    let user = await prisma.user.findFirst({
+        where:{id:"123"}
+    })
+
+    if(user==null){
+
+        try {
+            user = await prisma.user.create({
+                data:{
+                    id:"123",
+                    reportFilters:[]
+                }
             })
-        }
-        session = data.session
+          } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                console.log(e.message)
+            }
+            throw error(500, {
+                message: 'Not found',
+            });
+          }
     }
 
-    console.log(session)
+    let report = await prisma.report.findFirst({where:{id:3}})
+    if(report){
+        console.log(report.lat)
+    }
+
+    console.log("USER >>>>",user)
 
     return {
-        userData: fetchUserData(session?.user),
-        adContents: fetchAdContents(session?.user),
+        // userData: fetchUserData(session?.user),
+        // adContents: fetchAdContents(session?.user),
         forms:{
             zone:zoneForm.loadComp(event),
             filter:filterForm.loadComp(event),
