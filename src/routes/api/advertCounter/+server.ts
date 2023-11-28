@@ -1,7 +1,5 @@
-export const POST = async ({request}) => {
-    const { userId, advertComponentId } = await request.json();
+import { adCounter } from '$lib/comp/ui/advert/advertCounter.server.js';
 
-    console.log("/api/advertCounter")
-
-    return new Response();
+export const POST = async (event) => {
+    return adCounter(event)
 };
