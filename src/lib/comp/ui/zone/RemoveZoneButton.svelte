@@ -3,9 +3,9 @@
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
     import RemoveModal from './modals/RemoveModal.svelte';
-    import type { Database } from "$lib/utils/database.types";
+	import type { Zone } from '@prisma/client';
 
-    export let zone:Database["public"]["Tables"]["zones"]["Row"]
+    export let zone:Zone
 
     const modalComponent: ModalComponent = { ref: RemoveModal, props:{zone} };
 

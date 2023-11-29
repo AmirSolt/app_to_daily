@@ -1,12 +1,11 @@
 import { z } from 'zod'
-import { CrimeTypes } from './globals'
-
+import { CrimeType } from '@prisma/client'
 
 
 // =============================
 //  filter
 export const filterSchema = z.object({
-	filters:  z.array(z.nativeEnum(CrimeTypes))
+	filters:  z.array(z.nativeEnum(CrimeType))
 })
 
 // =============================
@@ -20,7 +19,7 @@ export const createZoneSchema = z.object({
 	lat:z.number(),
 })
 export const editZoneSchema = z.object({
-	id:z.string().min(3),
+	id:z.number(),
 	label:z.string().min(3),
 	address:z.string().min(3),
 	radius:z.number().min(1).max(10),
@@ -28,6 +27,5 @@ export const editZoneSchema = z.object({
 	lat:z.number(),
 })
 export const removeZoneSchema = z.object({
-	id:z.string().min(3),
-	confirm: z.boolean()
+	id:z.number(),
 })

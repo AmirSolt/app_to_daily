@@ -2,13 +2,11 @@
 
     import NotifModal from "./NotifModal.svelte";
     import { getModalStore } from '@skeletonlabs/skeleton';
-    import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
-    import type { Database } from "$lib/utils/database.types";
-    
-    export let report:Database["public"]["Tables"]["reports"]["Row"]
-    let isNew:boolean=true
+    import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
+    import type { Report } from "@prisma/client";
 
-    console.log(report)
+    export let report:Report
+    let isNew:boolean=true
 
     const modalComponent: ModalComponent = { ref: NotifModal, props:{report} };
 
@@ -24,6 +22,6 @@
 
 
 <button type="button" class="card p-4 text-start {isNew? "variant-outline" : ""}" on:click={openModal}>
-    <h1>{report.crime_type}</h1>
+    <h1>{report.crimeType}</h1>
     <p>{report.occur_at}</p>
 </button>

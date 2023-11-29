@@ -8,8 +8,8 @@
 	import { page } from '$app/stores';
 	import { invalidate } from '$app/navigation';
 	import type { SvelteComponent } from 'svelte';
-	import type { Database } from '$lib/utils/database.types';
-    export let zone:Database["public"]["Tables"]["zones"]["Row"]
+	import type { Zone } from '@prisma/client';
+    export let zone:Zone
 	export let parent:SvelteComponent
 	let toastStore = getToastStore();
 
@@ -30,7 +30,6 @@
 	const modalStore = getModalStore();
 
     $form.id = zone.id
-    $form.confirm = false
 
 </script>
 
@@ -52,11 +51,11 @@
             <input type="hidden" name="id" bind:value={$form.id}>
 
 			<div class="flex justify-end">
-				<button class="btn variant-filled w-24" type="submit" name="confirm" value="false">No</button>
+				<button class="btn variant-filled w-24" type="button" on:click={parent.onClose}>No</button>
 			</div>
 
 			<div class="flex justify-end">
-				<button class="btn variant-filled w-24" type="submit" name="confirm" value="true">Yes</button>
+				<button class="btn variant-filled w-24" type="submit">Yes</button>
 			</div>
 		</form>
 

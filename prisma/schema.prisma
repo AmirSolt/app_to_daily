@@ -10,11 +10,11 @@ datasource db {
 }
 
 model User {
-    id               String         @id
+    id               String         @id @default(uuid())
     createdAt        DateTime       @default(now())
     updatedAt        DateTime       @updatedAt
     region           Region
-    zones            Zone[]         
+    zones            Zone[]
     zoneReports      ReportOnZone[]
     adClicks         AdClick[]
     crimeTypeFilters CrimeType[]
@@ -30,13 +30,13 @@ model Zone {
     reportOnZones ReportOnZone[]
     long          Float
     lat           Float
-    point         Unsupported("geometry(Point, 3857)")
+    point         Unsupported("geometry(Point, 3857)")?
 
     @@index([point], map: "zone_idx", type: Gist)
 }
 
 model Report {
-    id            Int                                  @id @default(autoincrement())
+    id            String                                  @id
     crimeType     CrimeType
     occur_at      DateTime
     region        Region
@@ -50,7 +50,7 @@ model Report {
 
 model ReportOnZone {
     report   Report @relation(fields: [reportId], references: [id])
-    reportId Int
+    reportId String
     zone     Zone   @relation(fields: [zoneId], references: [id])
     zoneId   Int
     user     User   @relation(fields: [userId], references: [id])
@@ -61,10 +61,11 @@ model ReportOnZone {
 
 model AdContent {
     id         Int    @id @default(autoincrement())
-    imgSrc     String
-    title      String
-    body       String
-    buttonText String
+    imgSrc     String?
+    title      String?
+    body       String?
+    buttonText String?
+    url        String
 }
 
 model AdClick {

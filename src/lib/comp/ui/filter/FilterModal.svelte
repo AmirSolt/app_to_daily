@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 	import { getModalStore } from '@skeletonlabs/skeleton';
-    import { CrimeTypes } from '$lib/utils/globals';
 	import { superForm } from 'sveltekit-superforms/client';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import { toastError } from '$lib/utils/toastHelper.js';
@@ -10,8 +9,9 @@
 	import type { SvelteComponent } from 'svelte';
 	import { page } from '$app/stores';
 	import { invalidate } from '$app/navigation';
+	import { CrimeType } from '@prisma/client';
 	
-    let filters:CrimeTypes[] = $page.data.user.profile.report_filters
+    let filters:CrimeType[] = $page.data.user.crimeTypeFilters
 	export let parent:SvelteComponent
 	let toastStore = getToastStore();
 
@@ -56,8 +56,8 @@
 
 			<div>
 				<ListBox multiple>
-					{#each Object.values(CrimeTypes) as CrimeType}
-						<ListBoxItem class="variant-outline" bind:group={$form.filters} name="filters" value="{CrimeType}">{CrimeType}</ListBoxItem>
+					{#each Object.values(CrimeType) as crimeType}
+						<ListBoxItem class="variant-outline" bind:group={$form.filters} name="filters" value="{crimeType}">{crimeType}</ListBoxItem>
 					{/each}
 				</ListBox>
 			</div>

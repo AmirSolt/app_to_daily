@@ -17,7 +17,7 @@
 		Notifications
 	</h1>
 	<p>
-		Filters {user.profile.report_filters.length}
+		Filters {user.crimeTypeFilters.length}
 	</p>
 	<p>
 		Number of notifications in past week: {user.zoneReports.length}

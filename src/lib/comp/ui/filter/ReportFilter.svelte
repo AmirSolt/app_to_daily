@@ -2,8 +2,6 @@
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
     import FilterModal from './FilterModal.svelte';
-    import type { CrimeTypes } from "$lib/utils/globals";
-
 
     const modalComponent: ModalComponent = { ref: FilterModal};
 

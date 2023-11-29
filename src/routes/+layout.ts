@@ -4,7 +4,7 @@ export const load = async ({ data, depends }) => {
 
 
     data.user.zoneReports = data.user.zoneReports
-                                    .filter(r=>!data.user.crimeTypeFilters.includes(r.Crime))
+                                    .filter(r=>!data.user.crimeTypeFilters.includes(r.report.crimeType))
 
     return { 
         user:data.user,

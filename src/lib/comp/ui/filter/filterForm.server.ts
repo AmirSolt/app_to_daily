@@ -1,6 +1,7 @@
 import { error, fail, redirect } from '@sveltejs/kit'
 import { superValidate } from 'sveltekit-superforms/server'
 import { filterSchema } from '$lib/utils/schema'
+import prisma from '$lib/funcs/prisma.server'
 
 
 export const loadComp = async (event:any) => {
@@ -20,9 +21,14 @@ export const actionsComp = {
 			return fail(500, { form })
 		}
 
-        // update database value
-        console.log("Database updated")
-        console.log(form.data.filters)
+		await prisma.user.update({
+			where: {
+				id: event.locals.user.id,
+			},
+			data: {
+				crimeTypeFilters:form.data.filters
+			},
+		})
 
 		return { success: true, form };
 	}

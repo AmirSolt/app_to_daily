@@ -10,5 +10,4 @@ export async function adCounter(userId:string, advertComponentId:string){
             advertComponentId
         }),
       });
-      
 }

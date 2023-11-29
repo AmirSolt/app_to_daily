@@ -10,7 +10,11 @@ export const load = async (event) => {
         where:{id:"123"},
         include:{
             zones:true,
-            zoneReports:true,
+            zoneReports:{
+                select:{
+                    report:true
+                }
+            },
         }
     })
 
@@ -25,7 +29,11 @@ export const load = async (event) => {
                 },
                 include:{
                     zones:true,
-                    zoneReports:true,
+                    zoneReports:{
+                        select:{
+                            report:true
+                        }
+                    },
                 }
             })
           } catch (e) {

@@ -1,7 +1,6 @@
-import type { CrimeTypes } from "$lib/utils/globals"
-import type { Database } from "$lib/utils/database.types";
+import type { CrimeType, Report } from "@prisma/client";
 
-export async function scan(point:GeoPoint, filters:CrimeTypes[]):Promise<Database["public"]["Tables"]["reports"]["Row"][]>{
+export async function scan(point:GeoPoint, filters:CrimeType[]):Promise<Report[]>{
     console.log("Scan")
 
 

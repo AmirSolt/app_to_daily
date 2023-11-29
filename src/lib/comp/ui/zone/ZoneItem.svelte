@@ -4,9 +4,9 @@
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
     import EditModal from './modals/EditModal.svelte';
     import RemoveZoneButton from './RemoveZoneButton.svelte';
-    import type { Database } from '$lib/utils/database.types';
+	import type { Zone } from '@prisma/client';
 
-    export let zone:Database["public"]["Tables"]["zones"]["Row"]
+    export let zone:Zone
 
     const modalComponent: ModalComponent = { ref: EditModal, props:{zone} };
 
@@ -37,7 +37,7 @@
                 id: {zone.id}
             </div>
             <div>
-                point: {zone.point}
+                long: {zone.long}, lat: {zone.lat}
             </div>
             <div>
                 radius: {zone.radius}

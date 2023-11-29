@@ -3,7 +3,8 @@
     import { Avatar } from '@skeletonlabs/skeleton';
 	import { adCounter } from './advertCounter';
     import { page } from '$app/stores';
-    const advertComponentId = "Img Banner" // This Banner is id=0
+    import { AdComponent } from '@prisma/client';
+    const advertComponentId = AdComponent.BANNER
 
     let user = $page.data.user
     let advert = $page.data.adContents[0]
@@ -25,9 +26,9 @@
             <div class="flex p-2 gap-2">
 
                 <div class="flex flex-col justify-between items-start">
-                    {#if advert.image_src != null}
+                    {#if advert.imgSrc != null}
                         <div class="w-20 h-20">
-                            <Avatar src={advert.image_src} rounded="rounded-2xl" width="w-20" />
+                            <Avatar src={advert.imgSrc} rounded="rounded-2xl" width="w-20" />
                         </div> 
                     {/if}
                     <p class="text-sm p-2">Sponsored</p>
@@ -40,9 +41,9 @@
                     {#if advert.body != null}
                         <p>{advert.body}</p>
                     {/if}
-                    {#if advert.button_text != null}
+                    {#if advert.buttonText != null}
                         <button class="btn variant-filled" type="button" on:click={advertClick}>
-                            {advert.button_text}
+                            {advert.buttonText}
                         </button>
                     {/if}
                 </div>

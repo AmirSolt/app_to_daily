@@ -8,8 +8,8 @@
 	import { page } from '$app/stores';
 	import { invalidate } from '$app/navigation';
 	import type { SvelteComponent } from 'svelte';
-	import type { Database } from '$lib/utils/database.types';
-    export let zone:Database["public"]["Tables"]["zones"]["Row"]
+	import type { Zone } from '@prisma/client';
+    export let zone:Zone
 	export let parent:SvelteComponent
 	let toastStore = getToastStore();
 
@@ -34,8 +34,8 @@
     $form.label = zone.label
     $form.address = zone.address
     $form.radius = zone.radius
-    $form.long = zone.point.long
-    $form.lat = zone.point.lat
+    $form.long = zone.long
+    $form.lat = zone.lat
 
 </script>
 
