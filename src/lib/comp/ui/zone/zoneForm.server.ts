@@ -33,6 +33,7 @@ export const actionsComp = {
 			data: {
 				label: form.data.label,
 				address: form.data.address,
+				region:	form.data.region,
 				radius: form.data.radius,
 				userId: event.locals.userId,
 				long: form.data.long,
@@ -59,6 +60,7 @@ export const actionsComp = {
 			data: {
 				label: form.data.label,
 				address: form.data.address,
+				region:	form.data.region,
 				radius: form.data.radius,
 				userId: event.locals.userId,
 				long: form.data.long,

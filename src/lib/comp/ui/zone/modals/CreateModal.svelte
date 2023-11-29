@@ -8,6 +8,7 @@
 	import { page } from '$app/stores';
 	import { invalidate } from '$app/navigation';
 	import type { SvelteComponent } from 'svelte';
+	import { Region } from '@prisma/client';
 	export let parent:SvelteComponent
 	let toastStore = getToastStore();
 
@@ -31,6 +32,7 @@
 
 	function onGetAddress(){
 		$form.address="adasd"
+		$form.region=Region.TORONTO
 		$form.long = 0
 		$form.lat = 0
 	}

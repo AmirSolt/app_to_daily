@@ -13,7 +13,6 @@ model User {
     id               String         @id @default(uuid())
     createdAt        DateTime       @default(now())
     updatedAt        DateTime       @updatedAt
-    region           Region
     zones            Zone[]
     zoneReports      ReportOnZone[]
     adClicks         AdClick[]
@@ -25,6 +24,7 @@ model Zone {
     label         String
     address       String
     radius        Float
+    region        Region
     user          User                                 @relation(fields: [userId], references: [id])
     userId        String
     reportOnZones ReportOnZone[]
@@ -80,11 +80,19 @@ enum Region {
 }
 
 enum CrimeType {
-    BREAKANDENTER
-    // BREAK_AND_ENTER
+    ASSAULT
+    AUTO_THEFT
+    THEFT_FROM_VEHICLE
+    BREAK_AND_ENTER
+    SEXUAL_VIOLATION
     ROBBERY
+    THEFT_OVER
+    BIKE_THEFT
+    SHOOTING
+    HOMICIDE
 }
 
 enum AdComponent {
     BANNER
 }
+

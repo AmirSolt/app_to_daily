@@ -22,7 +22,6 @@ export const load = async (event) => {
             user = await prisma.user.create({
                 data: {
                     id:event.locals.userId,
-                    region: Region.TORONTO,
                     crimeTypeFilters: [],
                 },
                 include: {

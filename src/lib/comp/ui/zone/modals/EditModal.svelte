@@ -8,7 +8,7 @@
 	import { page } from '$app/stores';
 	import { invalidate } from '$app/navigation';
 	import type { SvelteComponent } from 'svelte';
-	import type { Zone } from '@prisma/client';
+	import { Region, type Zone } from '@prisma/client';
     export let zone:Zone
 	export let parent:SvelteComponent
 	let toastStore = getToastStore();
@@ -33,6 +33,7 @@
     $form.id = zone.id
     $form.label = zone.label
     $form.address = zone.address
+	$form.region=Region.TORONTO
     $form.radius = zone.radius
     $form.long = zone.long
     $form.lat = zone.lat
