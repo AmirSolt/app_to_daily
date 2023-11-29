@@ -10,7 +10,6 @@
     let advert = $page.data.adContents[0]
 
     async function advertClick(){
-        console.log("Click Submitted")
         if(advert.url != null){
             await adCounter(user.id, advertComponentId)
             goto(advert.url)

@@ -27,7 +27,9 @@ export const actionsComp = {
 			return fail(500, { form })
 		}
 
-		await prisma.zone.create({
+		console.log(">>>> Create")
+
+		const r = await prisma.zone.create({
 			data: {
 				label: form.data.label,
 				address: form.data.address,
@@ -38,21 +40,7 @@ export const actionsComp = {
 			}
 		})
 
-		return { success: true, form };
-	},
-	remove: async (event: any) => {
-		const form = await superValidate(event, removeZoneSchema)
-
-		if (!form.valid) {
-			return fail(500, { form })
-		}
-
-		await prisma.zone.delete({
-			where: {
-				userId: event.locals.userId,
-				id: form.data.id,
-			}
-		})
+		console.log(">>> added zone:",r)
 
 		return { success: true, form };
 	},
@@ -79,5 +67,21 @@ export const actionsComp = {
 		})
 
 		return { success: true, form };
-	}
+	},
+	remove: async (event: any) => {
+		const form = await superValidate(event, removeZoneSchema)
+
+		if (!form.valid) {
+			return fail(500, { form })
+		}
+		console.log(">>> remove zone form.data.id",form.data.id)
+		await prisma.zone.delete({
+			where: {
+				userId: event.locals.userId,
+				id: form.data.id,
+			}
+		})
+
+		return { success: true, form };
+	},
 }

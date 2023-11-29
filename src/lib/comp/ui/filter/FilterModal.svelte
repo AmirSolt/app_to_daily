@@ -22,7 +22,6 @@
 			toastError(result.error.message, toastStore);
 		},
 		onResult(event) {
-			// $page.data.user.profile.report_filters = $form.filters
 			invalidate('data:user')
 			parent.onClose()
 		},
@@ -34,7 +33,6 @@
 
 
 	$form.filters = filters
-	console.log($form.filters)
 
 
 </script>

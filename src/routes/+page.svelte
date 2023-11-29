@@ -5,15 +5,16 @@
 	import ScannerButton from '$lib/comp/ui/scanner/ScannerButton.svelte';
 	import type { Report } from '@prisma/client';
 	export let data;
-	const {
+	$:( {
 		user,
 		adContents,
 		forms,
-	} = data;
+	} = data );
 
 
 	let centerMap:GeoPoint
 	let scannedReports:Report[]=[]
+
 </script>
 
 
@@ -33,7 +34,9 @@
 
 
 <ReportFilter  />
-
+<p>
+	crimeTypeFilters: {user.crimeTypeFilters}
+</p>
 
 <br>
 <hr>

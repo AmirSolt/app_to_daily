@@ -5,10 +5,11 @@
 	import ReportFilter from '$lib/comp/ui/filter/ReportFilter.svelte';
 
 	export let data;
-	const {
+	$:( {
 		user,
 		adContents,
-	} = data;
+		forms,
+	} = data );
 
 
 </script>
@@ -38,7 +39,7 @@
 
 
 <div class="flex flex-col justify-center items-center gap-4">
-	{#each user.zoneReports as zoneReport}
+	{#each user.zoneReports as zoneReport (zoneReport.report.id)}
 		<NotifItem report={zoneReport.report} />
 	{/each}
 </div>

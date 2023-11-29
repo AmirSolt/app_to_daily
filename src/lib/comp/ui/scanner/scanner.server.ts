@@ -10,7 +10,6 @@ export async function scan(event:any){
     // data.user.zoneReports = data.user.zoneReports
     //                                 .filter(r=>!data.user.crimeTypeFilters.includes(r.report.crimeType))
 
-    console.log("/api/scanner")
 
     return json({})
 }

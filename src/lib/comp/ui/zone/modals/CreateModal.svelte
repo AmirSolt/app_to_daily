@@ -15,9 +15,11 @@
 	const { form, errors, constraints, enhance } = superForm($page.data.forms.zone.createForm, {
 		validators: createZoneSchema,
 		onError: ({result}) => {
+			console.log(">>> Error, Zone create:", result.error.message)
 			toastError(result.error.message, toastStore);
 		},
 		onResult(event) {
+			console.log(">>> $errors",$errors.message)
 			invalidate("data:user")
 			parent.onClose()
 		},
@@ -35,6 +37,8 @@
 	$form.radius = 5
 	onGetAddress()
 
+
+	
 </script>
 
 
@@ -50,8 +54,9 @@
 			<article>Body</article>
 		</div>
 
-		<form class="flex flex-col gap-6" method="POST" use:enhance action="/api/forms/zones?/create">
+		<form class="flex flex-col gap-6" method="POST" use:enhance action="/api/forms/zones?/create" >
 
+			
 			<input
 				class="input"
 				type="text"

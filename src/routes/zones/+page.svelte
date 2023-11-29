@@ -3,10 +3,11 @@
 	import ZoneItem from '$lib/comp/ui/zone/ZoneItem.svelte';
 
 	export let data;
-	const {
+	$:( {
 		user,
 		adContents,
-	} = data;
+		forms,
+	} = data );
 
 </script>
 
@@ -32,7 +33,7 @@
 <br>
 
 <div class="flex flex-col gap-2">
-	{#each user.zones as zone}
+	{#each user.zones as zone (zone.id)}
 		<ZoneItem {zone}/>
 	{/each}
 </div>
