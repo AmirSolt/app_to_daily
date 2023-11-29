@@ -34,6 +34,7 @@ export const POST = async (event) => {
         // create reportOnZones for each region for each zone
         // get all users that had reportOnZones added but that were not filtered
     
+    
     const users:User[] = []
 
     // push notif to users
