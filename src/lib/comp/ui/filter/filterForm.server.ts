@@ -23,7 +23,7 @@ export const actionsComp = {
 
 		await prisma.user.update({
 			where: {
-				id: event.locals.user.id,
+				id: event.locals.userId,
 			},
 			data: {
 				crimeTypeFilters:form.data.filters

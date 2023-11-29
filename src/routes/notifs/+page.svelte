@@ -38,7 +38,7 @@
 
 
 <div class="flex flex-col justify-center items-center gap-4">
-	{#each user.zoneReports as report}
-		<NotifItem {report} />
+	{#each user.zoneReports as zoneReport}
+		<NotifItem report={zoneReport.report} />
 	{/each}
 </div>

@@ -32,7 +32,7 @@ export const actionsComp = {
 				label: form.data.label,
 				address: form.data.address,
 				radius: form.data.radius,
-				userId: event.locals.user.id,
+				userId: event.locals.userId,
 				long: form.data.long,
 				lat: form.data.lat,
 			}
@@ -49,7 +49,7 @@ export const actionsComp = {
 
 		await prisma.zone.delete({
 			where: {
-				userId: event.locals.user.id,
+				userId: event.locals.userId,
 				id: form.data.id,
 			}
 		})
@@ -65,14 +65,14 @@ export const actionsComp = {
 
 		await prisma.zone.update({
 			where: {
-				userId: event.locals.user.id,
+				userId: event.locals.userId,
 				id: form.data.id,
 			},
 			data: {
 				label: form.data.label,
 				address: form.data.address,
 				radius: form.data.radius,
-				userId: event.locals.user.id,
+				userId: event.locals.userId,
 				long: form.data.long,
 				lat: form.data.lat,
 			},

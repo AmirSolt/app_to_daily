@@ -5,51 +5,45 @@ import prisma from '$lib/funcs/prisma.server.js';
 import { Prisma, Region, type User } from '@prisma/client';
 
 export const load = async (event) => {
-
     let user = await prisma.user.findFirst({
-        where:{id:"user1"},
-        include:{
-            zones:true,
-            zoneReports:{
-                select:{
-                    report:true
+        where: { id:event.locals.userId },
+        include: {
+            zones: true,
+            zoneReports: {
+                select: {
+                    report: true
                 }
             },
         }
     })
 
-    if(user==null){
-
+    if (user == null) {
         try {
             user = await prisma.user.create({
-                data:{
-                    id:"user1",
+                data: {
+                    id:event.locals.userId,
                     region: Region.TORONTO,
-                    crimeTypeFilters:[],
+                    crimeTypeFilters: [],
                 },
-                include:{
-                    zones:true,
-                    zoneReports:{
-                        select:{
-                            report:true
+                include: {
+                    zones: true,
+                    zoneReports: {
+                        select: {
+                            report: true
                         }
                     },
                 }
             })
-          } catch (e) {
+        } catch (e) {
             if (e instanceof Prisma.PrismaClientKnownRequestError) {
                 console.log(e.message)
             }
             throw error(500, {
                 message: 'Not found',
             });
-          }
+        }
     }
-
     
-
-    console.log("USER >>>>",user)
-
     return {
         user,
         adContents: prisma.adContent.findMany(),
