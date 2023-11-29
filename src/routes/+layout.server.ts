@@ -7,7 +7,7 @@ import { Prisma, Region, type User } from '@prisma/client';
 export const load = async (event) => {
 
     let user = await prisma.user.findFirst({
-        where:{id:"123"},
+        where:{id:"user1"},
         include:{
             zones:true,
             zoneReports:{
@@ -23,7 +23,7 @@ export const load = async (event) => {
         try {
             user = await prisma.user.create({
                 data:{
-                    id:"123",
+                    id:"user1",
                     region: Region.TORONTO,
                     crimeTypeFilters:[],
                 },

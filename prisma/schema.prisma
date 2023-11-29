@@ -30,7 +30,7 @@ model Zone {
     reportOnZones ReportOnZone[]
     long          Float
     lat           Float
-    point         Unsupported("geometry(Point, 3857)")?
+    point         Unsupported("geometry(Point, 3857)")
 
     @@index([point], map: "zone_idx", type: Gist)
 }
@@ -81,6 +81,7 @@ enum Region {
 
 enum CrimeType {
     BREAKANDENTER
+    // BREAK_AND_ENTER
     ROBBERY
 }
 
