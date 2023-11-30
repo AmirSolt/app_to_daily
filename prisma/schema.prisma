@@ -38,6 +38,8 @@ model Zone {
 model Report {
     id            String                                  @id
     crimeType     CrimeType
+    neighborhood String
+    locationType String
     occur_at      DateTime
     region        Region
     reportOnZones ReportOnZone[]

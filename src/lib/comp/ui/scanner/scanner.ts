@@ -1,4 +1,5 @@
 import type { CrimeType, Report } from "@prisma/client";
+import { error } from "@sveltejs/kit";
 
 export async function scan(point:GeoPoint, filters:CrimeType[]):Promise<Report[]>{
 
@@ -13,8 +14,13 @@ export async function scan(point:GeoPoint, filters:CrimeType[]):Promise<Report[]
         }),
     });
 
-    
+    let data = await response.json()
+    if(response.ok){
+        return data.reports
+    }
 
-    return await response.json()
+    throw error(400, {
+        message: 'Scanner Failed!',
+    });
 }
 
