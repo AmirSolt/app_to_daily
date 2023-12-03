@@ -7,7 +7,7 @@
     //  trigger on update and before_insert
 
 import { PrismaClient } from '@prisma/client'
-import type { Region, User, Report } from '@prisma/client';
+import type { Region, Profile, Report } from '@prisma/client';
 
 
 class PrismaClientCustom extends PrismaClient{
@@ -19,8 +19,8 @@ class PrismaClientCustom extends PrismaClient{
     async scanReports(long:number, lat:number, radius:number):Promise<Report[]>{
         return await this.$queryRaw<Report[]>`scan_reports(${long}, ${lat}, ${radius})`
     }
-    async zoneReportNotif(new_report_ids:string[], region:Region):Promise<User[]>{
-        return await this.$queryRaw<User[]>`insert_report_on_zone(${new_report_ids}, ${region})`
+    async zoneReportNotif(new_report_ids:string[], region:Region):Promise<Profile[]>{
+        return await this.$queryRaw<Profile[]>`insert_report_on_zone(${new_report_ids}, ${region})`
     }
 
 }

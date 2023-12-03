@@ -4,7 +4,7 @@
 
 	export let data;
 	$:( {
-		user,
+		profile,
 		adContents,
 		forms,
 	} = data );
@@ -16,7 +16,7 @@
 		Zones
 	</h1>
 	<p>
-		Number of zones {user.zones.length}
+		Number of zones {profile.zones.length}
 	</p>
 </div>
 
@@ -33,7 +33,7 @@
 <br>
 
 <div class="flex flex-col gap-2">
-	{#each user.zones as zone (zone.id)}
+	{#each profile.zones as zone (zone.id)}
 		<ZoneItem {zone}/>
 	{/each}
 </div>

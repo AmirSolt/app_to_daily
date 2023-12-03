@@ -21,9 +21,9 @@ export const actionsComp = {
 			return fail(500, { form })
 		}
 
-		await prisma.user.update({
+		await prisma.profile.update({
 			where: {
-				id: event.locals.userId,
+				id: event.locals.profileId,
 			},
 			data: {
 				crimeTypeFilters:form.data.filters

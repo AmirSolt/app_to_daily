@@ -1,4 +1,4 @@
-export async function adCounter(userId:string, advertComponentId:string){
+export async function adCounter(profileId:string, advertComponentId:string){
     // POST REQ
     const response = await fetch("/api/advertCounter", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -6,7 +6,7 @@ export async function adCounter(userId:string, advertComponentId:string){
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            userId,
+            profileId,
             advertComponentId
         }),
       });

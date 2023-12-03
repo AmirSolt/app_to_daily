@@ -6,7 +6,7 @@
 	import type { Report } from '@prisma/client';
 	export let data;
 	$:( {
-		user,
+		profile,
 		adContents,
 		forms,
 	} = data );
@@ -35,7 +35,7 @@
 
 <ReportFilter  />
 <p>
-	crimeTypeFilters: {user.crimeTypeFilters}
+	crimeTypeFilters: {profile.crimeTypeFilters}
 </p>
 
 <br>
@@ -50,7 +50,7 @@
 	</h1>
 
 	<p>
-		Zone Reports {user.zoneReports.length}
+		Zone Reports {profile.zoneReports.length}
 	</p>
 
 	<p>
@@ -58,7 +58,7 @@
 	</p>
 
 	<p>
-		Total Reports {user.zoneReports.length + scannedReports.length}
+		Total Reports {profile.zoneReports.length + scannedReports.length}
 	</p>
 </div>
 
@@ -69,7 +69,7 @@
 <div>
 	<CreateZoneButton />
 	<p>
-		Number of zones {user.zones.length}
+		Number of zones {profile.zones.length}
 	</p>
 </div>
 

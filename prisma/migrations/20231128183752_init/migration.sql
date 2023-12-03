@@ -11,7 +11,7 @@ CREATE TYPE "CrimeType" AS ENUM ('BREAKANDENTER', 'ROBBERY');
 CREATE TYPE "AdComponent" AS ENUM ('BANNER');
 
 -- CreateTable
-CREATE TABLE "User" (
+CREATE TABLE "Profile" (
     "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE "Zone" (
     "label" TEXT NOT NULL,
     "address" TEXT NOT NULL,
     "radius" DOUBLE PRECISION NOT NULL,
-    "userId" TEXT NOT NULL,
+    "profileId" TEXT NOT NULL,
     "long" DOUBLE PRECISION NOT NULL,
     "lat" DOUBLE PRECISION NOT NULL,
     "point" geometry(Point, 3857) NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE "Report" (
 CREATE TABLE "ReportOnZone" (
     "reportId" INTEGER NOT NULL,
     "zoneId" INTEGER NOT NULL,
-    "userId" TEXT NOT NULL,
+    "profileId" TEXT NOT NULL,
 
     CONSTRAINT "ReportOnZone_pkey" PRIMARY KEY ("reportId","zoneId")
 );
@@ -72,7 +72,7 @@ CREATE TABLE "AdContent" (
 CREATE TABLE "AdClick" (
     "id" SERIAL NOT NULL,
     "adComponent" "AdComponent" NOT NULL,
-    "userId" TEXT NOT NULL,
+    "profileId" TEXT NOT NULL,
 
     CONSTRAINT "AdClick_pkey" PRIMARY KEY ("id")
 );
@@ -84,7 +84,7 @@ CREATE INDEX "zone_idx" ON "Zone" USING GIST ("point");
 CREATE INDEX "report_idx" ON "Report" USING GIST ("point");
 
 -- AddForeignKey
-ALTER TABLE "Zone" ADD CONSTRAINT "Zone_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Zone" ADD CONSTRAINT "Zone_userId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "ReportOnZone" ADD CONSTRAINT "ReportOnZone_reportId_fkey" FOREIGN KEY ("reportId") REFERENCES "Report"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -93,7 +93,7 @@ ALTER TABLE "ReportOnZone" ADD CONSTRAINT "ReportOnZone_reportId_fkey" FOREIGN K
 ALTER TABLE "ReportOnZone" ADD CONSTRAINT "ReportOnZone_zoneId_fkey" FOREIGN KEY ("zoneId") REFERENCES "Zone"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ReportOnZone" ADD CONSTRAINT "ReportOnZone_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "ReportOnZone" ADD CONSTRAINT "ReportOnZone_userId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "AdClick" ADD CONSTRAINT "AdClick_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "AdClick" ADD CONSTRAINT "AdClick_userId_fkey" FOREIGN KEY ("profileId") REFERENCES "Profile"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

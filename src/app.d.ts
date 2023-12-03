@@ -1,12 +1,12 @@
-import type { User, AdContent } from '@prisma/client'
+import type { Profile, AdContent } from '@prisma/client'
 
 declare global {
   namespace App {
     interface Locals {
-      userId: string
+      profileId: string
     }
     interface PageData {
-      user: User
+      profile: Profile
       adContents:AdContent[]
       forms:any
     }

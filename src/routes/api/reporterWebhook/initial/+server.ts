@@ -1,6 +1,6 @@
 import { ADMIN_SECRET } from '$env/static/private'
 import prisma from '$lib/funcs/prisma.server.js';
-import { CrimeType, Region, type User } from '@prisma/client';
+import { CrimeType, Region, type Profile } from '@prisma/client';
 import { error } from '@sveltejs/kit';
 
 
@@ -22,8 +22,7 @@ export const POST = async (event) => {
     
     
     const dateStr = getDateStrMinutesAgo(minutesBack)
-    const order_by = "HOUR"
-    const query_date_str = `REPORT_DATE_EST >= date '${dateStr} 00:00:00'`
+    const query_date_str = `OCC_DATE_AGOL >= date '${dateStr} 00:00:00'`
     const whereStatementUrlified = encodeURIComponent(query_date_str)
     
     const rawReportsUrl = `https://services.arcgis.com/S9th0jAJ7bqgIRjw/ArcGIS/rest/services/YTD_CRIME_WM/FeatureServer/0/query?where=${whereStatementUrlified}&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&relationParam=&returnGeodetic=false&outFields=*&returnGeometry=true&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&defaultSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=${order_by}&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pjson&token=`   
@@ -45,7 +44,7 @@ export const POST = async (event) => {
         data:rawReports.map(raw=>{
             const occur_at = raw["attributes"]["OCC_DATE_EST"] + raw["attributes"]["HOUR"]
             return {
-                id:raw["attributes"][""],
+                id:raw["attributes"]["EVENT_UNIQUE_ID"],
                 neighborhood:removeNeighExtraChars(raw["attributes"]["NEIGHBOURHOOD_158"]),
                 locationType:raw["attributes"]["LOCATION_CATEGORY"], 
                 crimeType:raw["attributes"]["CRIME_TYPE"] as CrimeType,
@@ -64,7 +63,7 @@ export const POST = async (event) => {
         // get all users that had reportOnZones added but that were not filtered
     
     
-    const users:User[] = await prisma.zoneReportNotif(newReports.map(n=>n.id), region)
+    const users:Profile[] = await prisma.zoneReportNotif(newReports.map(n=>n.id), region)
 
     console.log(`>> ${users.length} many users recieved notif`)
     // push notif to users

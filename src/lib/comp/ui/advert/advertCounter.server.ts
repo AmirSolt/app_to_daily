@@ -1,10 +1,10 @@
 import prisma from "$lib/funcs/prisma.server";
 
 export const adCounter = async (event:any) => {
-    const { userId, advertComponentId } = await event.request.json();
+    const { profileId, advertComponentId } = await event.request.json();
     await prisma.adClick.create({
         data:{
-            userId,
+            profileId,
             adComponent:advertComponentId,
         }
     })

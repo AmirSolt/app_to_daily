@@ -21,7 +21,7 @@
 		},
 		onResult(event) {
 			console.log(">>> $errors",$errors.message)
-			invalidate("data:user")
+			invalidate("data:profile")
 			parent.onClose()
 		},
 		taintedMessage: null

@@ -11,7 +11,7 @@
 	import { invalidate } from '$app/navigation';
 	import { CrimeType } from '@prisma/client';
 	
-    let filters:CrimeType[] = $page.data.user.crimeTypeFilters
+    let filters:CrimeType[] = $page.data.profile.crimeTypeFilters
 	export let parent:SvelteComponent
 	let toastStore = getToastStore();
 
@@ -22,7 +22,7 @@
 			toastError(result.error.message, toastStore);
 		},
 		onResult(event) {
-			invalidate('data:user')
+			invalidate('data:profile')
 			parent.onClose()
 		},
 		taintedMessage: null

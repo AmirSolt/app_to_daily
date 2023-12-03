@@ -2,11 +2,11 @@ import * as zoneForm from '$lib/comp/ui/zone/zoneForm.server.js';
 import * as filterForm from '$lib/comp/ui/filter/filterForm.server.js';
 import { error } from '@sveltejs/kit';
 import prisma from '$lib/funcs/prisma.server.js';
-import { Prisma, Region, type User } from '@prisma/client';
+import { Prisma, Region, type Profile } from '@prisma/client';
 
 export const load = async (event) => {
-    let user = await prisma.user.findFirst({
-        where: { id:event.locals.userId },
+    let profile = await prisma.profile.findFirst({
+        where: { id:event.locals.profileId },
         include: {
             zones: true,
             zoneReports: {
@@ -17,11 +17,11 @@ export const load = async (event) => {
         }
     })
 
-    if (user == null) {
+    if (profile == null) {
         try {
-            user = await prisma.user.create({
+            profile = await prisma.profile.create({
                 data: {
-                    id:event.locals.userId,
+                    id:event.locals.profileId,
                     crimeTypeFilters: [],
                 },
                 include: {
@@ -44,7 +44,7 @@ export const load = async (event) => {
     }
     
     return {
-        user,
+        profile,
         adContents: prisma.adContent.findMany(),
         forms:{
             zone:zoneForm.loadComp(event),

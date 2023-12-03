@@ -6,7 +6,7 @@
 
 	export let data;
 	$:( {
-		user,
+		profile,
 		adContents,
 		forms,
 	} = data );
@@ -18,10 +18,10 @@
 		Notifications
 	</h1>
 	<p>
-		Filters {user.crimeTypeFilters.length}
+		Filters {profile.crimeTypeFilters.length}
 	</p>
 	<p>
-		Number of notifications in past week: {user.zoneReports.length}
+		Number of notifications in past week: {profile.zoneReports.length}
 	</p>
 
 </div>
@@ -39,7 +39,7 @@
 
 
 <div class="flex flex-col justify-center items-center gap-4">
-	{#each user.zoneReports as zoneReport (zoneReport.report.id)}
+	{#each profile.zoneReports as zoneReport (zoneReport.report.id)}
 		<NotifItem report={zoneReport.report} />
 	{/each}
 </div>

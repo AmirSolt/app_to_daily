@@ -3,7 +3,7 @@ import type {  Handle } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
 
-    event.locals.userId = "user1"
+    event.locals.profileId = "user1"
 
     return resolve(event, {
         filterSerializedResponseHeaders(name) {

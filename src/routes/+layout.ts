@@ -1,15 +1,15 @@
 
 export const load = async ({ data, depends }) => {
-    depends('data:user');
+    depends('data:profile');
     console.log("Loading data")
 
-    data.user.zoneReports = data.user.zoneReports
-                                    .filter(r=>!data.user.crimeTypeFilters.includes(r.report.crimeType))
+    data.profile.zoneReports = data.profile.zoneReports
+                                    .filter(r=>!data.profile.crimeTypeFilters.includes(r.report.crimeType))
 
-    console.log(">>> loaded user",data.user)
+    console.log(">>> loaded profile",data.profile)
 
     return { 
-        user:data.user,
+        profile:data.profile,
         adContents:data.adContents,
         forms:data.forms,
     };

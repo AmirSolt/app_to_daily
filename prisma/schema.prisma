@@ -9,7 +9,7 @@ datasource db {
     extensions = [postgis()]
 }
 
-model User {
+model Profile {
     id               String         @id @default(uuid())
     createdAt        DateTime       @default(now())
     updatedAt        DateTime       @updatedAt
@@ -25,8 +25,8 @@ model Zone {
     address       String
     radius        Float
     region        Region
-    user          User                                 @relation(fields: [userId], references: [id])
-    userId        String
+    profile          Profile                                 @relation(fields: [profileId], references: [id])
+    profileId        String
     reportOnZones ReportOnZone[]
     long          Float
     lat           Float
@@ -37,10 +37,11 @@ model Zone {
 
 model Report {
     id            String                                  @id
+    createdAt        DateTime       @default(now())
     crimeType     CrimeType
     neighborhood String
     locationType String
-    occur_at      DateTime
+    occurAt      DateTime
     region        Region
     reportOnZones ReportOnZone[]
     long          Float
@@ -48,6 +49,8 @@ model Report {
     point         Unsupported("geometry(Point, 3857)")
 
     @@index([point], map: "report_idx", type: Gist)
+    @@index([createdAt], map: "created_at_idx")
+    @@index([occurAt], map: "occur_at_idx")
 }
 
 model ReportOnZone {
@@ -55,8 +58,8 @@ model ReportOnZone {
     reportId String
     zone     Zone   @relation(fields: [zoneId], references: [id])
     zoneId   Int
-    user     User   @relation(fields: [userId], references: [id])
-    userId   String
+    profile     Profile   @relation(fields: [profileId], references: [id])
+    profileId   String
 
     @@id([reportId, zoneId])
 }
@@ -73,8 +76,8 @@ model AdContent {
 model AdClick {
     id          Int         @id @default(autoincrement())
     adComponent AdComponent
-    user        User        @relation(fields: [userId], references: [id])
-    userId      String
+    profile        Profile        @relation(fields: [profileId], references: [id])
+    profileId      String
 }
 
 enum Region {

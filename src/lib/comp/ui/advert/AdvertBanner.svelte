@@ -6,12 +6,12 @@
     import { AdComponent } from '@prisma/client';
     const advertComponentId = AdComponent.BANNER
 
-    let user = $page.data.user
+    let profile = $page.data.profile
     let advert = $page.data.adContents[0]
 
     async function advertClick(){
         if(advert.url != null){
-            await adCounter(user.id, advertComponentId)
+            await adCounter(profile.id, advertComponentId)
             goto(advert.url)
         }
     }
