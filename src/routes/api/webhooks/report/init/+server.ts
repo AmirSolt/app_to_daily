@@ -60,13 +60,13 @@ export const POST = async (event) => {
     // proximity calc
     // call function that:
         // create reportOnZones for each region for each zone
-        // get all users that had reportOnZones added but that were not filtered
+        // get all profiles that had reportOnZones added but that were not filtered
     
     
-    const users:Profile[] = await prisma.zoneReportNotif(newReports.map(n=>n.id), region)
+    const profiles:Profile[] = await prisma.zoneReportNotif(newReports.map(n=>n.id), region)
 
-    console.log(`>> ${users.length} many users recieved notif`)
-    // push notif to users
+    console.log(`>> ${profiles.length} many profiles recieved notif`)
+    // push notif to profiles
     
 
     return new Response()

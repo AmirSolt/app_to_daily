@@ -3,7 +3,7 @@ import { error } from "@sveltejs/kit";
 
 export async function scan(point:GeoPoint, filters:CrimeType[]):Promise<Report[]>{
 
-    const response = await fetch("/api/scanner", {
+    const response = await fetch("/api/endpoints/scanner", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
           "Content-Type": "application/json",
