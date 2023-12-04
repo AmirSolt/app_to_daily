@@ -25,29 +25,36 @@ export async function saveReportsByDate(fromDate:Date, dateType:DateQueryType){
             message: data,
         });
     }
+
+    // filter null fields
+    rawReports = rawReports.filter(raw=>{
+        return (
+        raw["attributes"]!=null ||
+        raw["attributes"]["CRIME_TYPE"]!=null ||
+        raw["attributes"][DateQueryType.OCC_DATE_AGOL]!=null ||
+        raw["attributes"]["HOUR"]!=null ||
+        raw["geometry"]!=null
+        )
+    })
   
-    // * check if ids exist
-    // * occur_at
-    // * crimeType should match
-    // * convert string_null to null
-    return await prisma.report.create({
+    return await prisma.report.createMany({
         data:rawReports.map(raw=>{
-            const occur_at = raw["attributes"][DateQueryType.OCC_DATE_AGOL] + raw["attributes"]["HOUR"]
+            const occurAt = setDateToSpecificHour(raw["attributes"][DateQueryType.OCC_DATE_AGOL], raw["attributes"]["HOUR"])
             return {
                 id:raw["attributes"]["EVENT_UNIQUE_ID"],
                 neighborhood:removeNeighExtraChars(raw["attributes"]["NEIGHBOURHOOD_158"]),
                 locationType:raw["attributes"]["LOCATION_CATEGORY"], 
-                crimeType:raw["attributes"]["CRIME_TYPE"] as CrimeType,
-                occur_at:occur_at,
+                crimeType:crimeTypeCleaning(raw["attributes"]["CRIME_TYPE"]) as CrimeType,
+                occurAt:occurAt,
                 region:region,
                 long:raw["geometry"]["x"],
                 lat:raw["geometry"]["y"],
             }
-        })
+        }),
+        skipDuplicates: true,
     })
 
 }
-
 
 
 
@@ -82,3 +89,17 @@ function removeNeighExtraChars(inputString: string): string {
 
     return result;
 }
+
+
+
+function setDateToSpecificHour(epochTime: number, hour: number): Date {
+    const date = new Date(epochTime);
+    date.setUTCHours(hour, 0, 0, 0);
+    return date;
+}
+
+
+function crimeTypeCleaning(rawCrimeType:string){
+    return rawCrimeType.toUpperCase().replace(/\s+/g, '_');
+}
+

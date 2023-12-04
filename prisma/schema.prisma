@@ -39,8 +39,8 @@ model Report {
     id            String                                  @id
     createdAt        DateTime       @default(now())
     crimeType     CrimeType
-    neighborhood String
-    locationType String
+    neighborhood String?
+    locationType String?
     occurAt      DateTime
     region        Region
     reportOnZones ReportOnZone[]
