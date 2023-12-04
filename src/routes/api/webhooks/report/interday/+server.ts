@@ -12,7 +12,7 @@ export const POST = async (event) => {
         });
     }
 
-    const date = new Date(new Date().setFullYear(new Date().getFullYear() - 1))
+    const date = new Date()
     const dateQueryType = DateQueryType.OCC_DATE_AGOL
     await saveReportsByDate(date, dateQueryType)
     return new Response()
